@@ -10,7 +10,8 @@ export function useFetchPositions() {
     // Fetches data in json format from the positions endpoint, wrapped in callback for rerender stability haha (tbf doesn't need to)
     const fetchPositions = useCallback(async () => {
         try {
-            const response = await fetch("http://localhost:3000/game/v1/get-positions", {
+            // "http://localhost:3000/game/v1/get-positions"
+            const response = await fetch("https://api.antarux.dev/game/v1/get-positions", {
                 headers: { Authorization: `Bearer ${POSITION_TOKEN}` },
             });
 
