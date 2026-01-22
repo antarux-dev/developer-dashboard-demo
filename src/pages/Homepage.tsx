@@ -24,13 +24,13 @@ export default function Homepage() {
     }
 
     return (
-        <div className="flex h-[calc(100vh-6rem)] bg-[--bg-dark]">
-            <aside className="w-64 bg-[--bg-light] border-r border-custom overflow-y-auto p-4 space-y-2 shadow-custom">
+        <div className="flex min-h-[calc(100vh-6rem)] bg-[--bg-dark]">
+            <aside className="w-64 bg-[--bg-light] border-r border-custom p-4 space-y-2 shadow-custom">
                 <button
                     className={`
                         w-full 
                         py-2 
-                        px-4 
+                        px-1
                         rounded-lg 
                         text-left 
                         font-medium 
@@ -47,10 +47,11 @@ export default function Homepage() {
                         key={id}
                         className={`
                             w-full 
-                            py-2 
-                            px-4 
+                            py-1.5 
+                            px-3
                             rounded-lg 
                             text-left 
+                            text-sm
                             font-medium 
                             btn-accent 
                             text-[--text-primary] 
@@ -77,6 +78,13 @@ export default function Homepage() {
                     </p>
                 )}
 
+                <button
+                    className="btn-accent py-3 px-6 rounded-lg font-semibold hover:btn-accent text-[--text-primary]"
+                    onClick={() => setIsMapOpen(true)}
+                >
+                Open Live Map
+                </button>
+
                 <div className="space-y-2 mb-6">
                     {selectedPlayers.length > 0 ? (
                         selectedPlayers.map((player) => (
@@ -88,20 +96,14 @@ export default function Homepage() {
                         <p className="text-[--text-secondary] italic">No players online - basically a ghost town vibes.</p>
                     )}
                 </div>
-                <button
-                    className="btn-accent py-3 px-6 rounded-lg font-semibold hover:btn-accent text-[--text-primary]"
-                    onClick={() => setIsMapOpen(true)}
-                >
-                Open Live Map
-                </button>
-
-                {isMapOpen && (
-                    <MapModal
-                        serverId={selectedServer}
-                        onCloseCallback={() => setIsMapOpen(false)}
-                    />
-                )}
             </main>
+
+            {isMapOpen && (
+                <MapModal
+                    serverId={selectedServer}
+                    onCloseCallback={() => setIsMapOpen(false)}
+                />
+            )}
         </div>
     );
 }
